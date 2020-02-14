@@ -1,0 +1,5 @@
+.vscode
+temp.ino
+build
+ArdBuild
+*.sh
