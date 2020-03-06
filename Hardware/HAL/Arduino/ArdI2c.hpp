@@ -1,9 +1,8 @@
 
-#include "hwSelect.hpp"
-
-#ifdef ARD_I2C
 #ifndef ARD_I2C_HPP
 #define ARD_I2C_HPP
+#include "hwSelect.hpp"
+#ifdef ARD_I2C
 
 #include "I2cBus.hpp"
 

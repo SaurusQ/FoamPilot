@@ -2,6 +2,8 @@
 #ifndef IMU_HPP
 #define IMU_HPP
 
+#include <inttypes.h>
+
 struct Imu_d3_uint16
 {
     int16_t x;
@@ -37,6 +39,8 @@ class Imu
         Imu() {}
         virtual ~Imu() {};
 
+        virtual void init() = 0;
+        virtual void reset() = 0;
         virtual void calibrate() =  0;
         virtual void update() = 0;
         virtual void isHealhty() = 0;
