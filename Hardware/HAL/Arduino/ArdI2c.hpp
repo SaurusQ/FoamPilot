@@ -1,8 +1,9 @@
 
 #include "hwSelect.hpp"
 
-#if I2C_TYPE == ArdI2c && !ARD_I2C_HPP
-#define ARD_I2C_HPP 1
+#ifdef ARD_I2C
+#ifndef ARD_I2C_HPP
+#define ARD_I2C_HPP
 
 #include "I2cBus.hpp"
 
@@ -21,4 +22,5 @@ class ArdI2c : public I2cBus
 
 typedef ArdI2c I2c_t;
 
+#endif
 #endif
