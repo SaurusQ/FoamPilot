@@ -24,14 +24,21 @@ typedef Imu_d3_float ImuAccF;
 typedef Imu_d3_float ImuGyrF;
 typedef Imu_d3_float ImuComF;
 
+struct ImuData
+{
+    ImuAccI accelometer;
+    ImuGyrI gyro;
+    ImuComI compass;
+};
+
 class Imu
 {
     public:
         Imu() {}
-        virtual ~Imu();
-        
+        virtual ~Imu() {};
+
         virtual void calibrate() =  0;
-        virtual void update();
+        virtual void update() = 0;
         virtual void isHealhty() = 0;
 
         virtual ImuAccI getAccInt();
@@ -41,7 +48,10 @@ class Imu
         virtual ImuGyrF getGyrFloat();
         virtual ImuComF getComFloat();
     protected:
-        Imu_d3_float imuFloatToInt(Imu_d3_uint16 a);
+        Imu_d3_float imuIntToFloat(Imu_d3_uint16 a);
+
+        ImuData data_;
+
 };
 
 #endif
