@@ -37,7 +37,7 @@ void Mpl3115a2::update()
     uint32_t alt = 
         ((uint32_t)buf[0] << 24) |
         ((uint32_t)buf[1] << 16) |
-        ((uint32_t)buf[3] << 8);
-    
-    altitude_ = alt / 65536;
+        ((uint32_t)buf[2] << 8);
+
+    altitude_ = alt / 655.36;
 }
