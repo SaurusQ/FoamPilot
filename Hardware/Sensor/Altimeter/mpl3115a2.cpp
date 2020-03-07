@@ -10,7 +10,7 @@ Mpl3115a2::Mpl3115a2()
 
 void Mpl3115a2::init()
 {
-    pI2cBus_->writeByte(I2C_ADDR, CTRL_REG1, 0xB8); // set OSR = 128
+    pI2cBus_->writeByte(I2C_ADDR, CTRL_REG1, 0x88); // set OSR = 10ms
     pI2cBus_->writeByte(I2C_ADDR, PT_DATA_CFG, 0x07); // set data ready event
     pI2cBus_->writeByte(I2C_ADDR, CTRL_REG1, 0xB9); // set active
 }
@@ -31,12 +31,13 @@ void Mpl3115a2::update()
         STA = pI2cBus_->readByte(I2C_ADDR, STATUS);
     } while(!(STA & 0x08)); // is data ready
 
-    uint8_t msb = pI2cBus_->readByte(I2C_ADDR, OUT_P_MSB);
-    uint8_t csb = pI2cBus_->readByte(I2C_ADDR, OUT_P_CSB);
-    uint8_t lsb = pI2cBus_->readByte(I2C_ADDR, OUT_P_LSB);
-
-    altitude_ = 
-        ((msb & ~(0x01 << 7)) << 12) |
-        (csb << 4) |
-        (lsb & 0x0F);
+    uint8_t buf[3];
+    pI2cBus_->readBytes(I2C_ADDR, OUT_P_MSB, buf, 3);
+    
+    uint32_t alt = 
+        ((uint32_t)buf[0] << 24) |
+        ((uint32_t)buf[1] << 16) |
+        ((uint32_t)buf[3] << 8);
+    
+    altitude_ = alt / 65536;
 }
