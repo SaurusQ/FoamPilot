@@ -14,6 +14,11 @@
     #include "mpl3115a2.hpp"
     #include "altimeter.hpp"
 
+    // imu
+    #define MPU9150
+    #include "mpu9150.hpp"
+    #include "imu.hpp"
+
     #if MCU_TYPE == MCU_ARDUINO 
         #define ARD_I2C
         #include "ArdI2c.hpp"
