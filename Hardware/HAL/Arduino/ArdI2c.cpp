@@ -5,7 +5,7 @@ ArdI2c::ArdI2c()
     : I2cBus()
 {
     Wire.begin();
-    //Wire.setClock(400000);
+    Wire.setClock(400000);
 }
 
 I2cBus* ArdI2c::getInstance()
