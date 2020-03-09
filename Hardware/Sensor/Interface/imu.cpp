@@ -1,41 +1,22 @@
 
 #include "imu.hpp"
 
-ImuAccI Imu::getAccInt()
+ImuAccF Imu::getAccFloat() const
 {
-    return data_.accelometer;
+    return imuData_.accelometer;
 }
 
-ImuGyrI Imu::getGyrInt()
+ImuGyrF Imu::getGyrFloat() const
 {
-    return data_.gyro;
+    return imuData_.gyro;
 }
 
-ImuComI Imu::getComInt()
+ImuComF Imu::getComFloat() const
 {
-    return data_.compass;
+    return imuData_.compass;
 }
 
-ImuAccF Imu::getAccFloat()
+ImuData Imu::getImuData() const
 {
-    return this->imuIntToFloat(this->getAccInt());
-}
-
-ImuGyrF Imu::getGyrFloat()
-{
-    return this->imuIntToFloat(this->getGyrInt());
-}
-
-ImuComF Imu::getComFloat()
-{
-    return this->imuIntToFloat(this->getComInt());
-}
-
-Imu_d3_float Imu::imuIntToFloat(Imu_d3_uint16 a)
-{
-    Imu_d3_float b;
-    b.x = static_cast<float>(a.x);
-    b.y = static_cast<float>(a.y);
-    b.z = static_cast<float>(a.z);
-    return b;
+    return imuData_;
 }
