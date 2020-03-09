@@ -10,14 +10,12 @@
     #define IMU_TYPE
 
     // altimeter
-    #define MPL3115A2
+    #define SELECT_MPL3115A2
     #include "mpl3115a2.hpp"
-    #include "altimeter.hpp"
 
     // imu
-    #define MPU9150
+    #define SELECT_MPU9150
     #include "mpu9150.hpp"
-    #include "imu.hpp"
 
     #if MCU_TYPE == MCU_ARDUINO 
         #define ARD_I2C

@@ -2,25 +2,25 @@
 #ifndef MPL3115A2_HPP
 #define MPL3115A2_HPP
 #include "hwSelect.hpp"
-#ifdef MPL3115A2
+#ifdef SELECT_MPL3115A2
 
 #include "altimeter.hpp"
 #include "I2cBus.hpp"
 
-#define I2C_ADDR 0x60
+#define MPL3115A2_I2C_ADDR 0x60
 
-#define STATUS      0x00
-#define OUT_P_MSB   0x01
-#define OUT_P_CSB   0x02
-#define OUT_P_LSB   0x03
-#define PT_DATA_CFG 0x13
-#define CTRL_REG1   0x26
+#define MPL3115A2_STATUS      0x00
+#define MPL3115A2_OUT_P_MSB   0x01
+#define MPL3115A2_OUT_P_CSB   0x02
+#define MPL3115A2_OUT_P_LSB   0x03
+#define MPL3115A2_PT_DATA_CFG 0x13
+#define MPL3115A2_CTRL_REG1   0x26
 
-class Mpl3115a2 : public Altimeter
+class MPL3115A2 : public Altimeter
 {
     public:
-        Mpl3115a2();
-        virtual ~Mpl3115a2() {}
+        MPL3115A2();
+        virtual ~MPL3115A2() {}
 
         virtual void init();
         virtual void reset();
@@ -30,7 +30,7 @@ class Mpl3115a2 : public Altimeter
         I2cBus* pI2cBus_;
 };
 
-typedef Mpl3115a2 Altimeter_t;
+typedef MPL3115A2 Altimeter_t;
 
 #endif
 #endif
