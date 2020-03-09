@@ -13,6 +13,7 @@ class I2cBus
         virtual void writeBytes  (uint8_t devAddr, uint8_t regAddr, uint8_t* pData, uint8_t len) = 0;
         virtual void writeByte   (uint8_t devAddr, uint8_t regAddr, uint8_t data);
         virtual void writeBits   (uint8_t devAddr, uint8_t regAddr, uint8_t data, uint8_t bitMask);
+        virtual void writeBits   (uint8_t devAddr, uint8_t regAddr, uint8_t data, uint8_t bitStart, uint8_t bitLength);
         virtual void writeBit    (uint8_t devAddr, uint8_t regAddr, uint8_t data, uint8_t bitNum);
         
         virtual uint8_t readBytes(uint8_t devAddr, uint8_t regAddr, uint8_t* pBuf, uint8_t len) = 0;
