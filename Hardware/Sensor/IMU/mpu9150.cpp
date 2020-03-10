@@ -11,6 +11,8 @@ MPU9150::MPU9150()
 void MPU9150::init()
 {
     this->setSleepEnabled(false);
+    this->setAccelSens(AccelSens::FS_2);
+    this->setGyroSens(GyroSens::FS_250);
     // TODO set clock source
 }
 
@@ -30,6 +32,7 @@ void MPU9150::update()
     // read accelometer and gyro
     uint8_t buffer[14];
     pI2cBus_->readBytes(MPU9150_I2C_ADDR, MPU9150_ACCEL_XOUT_H, buffer, 14);
+
     imuData_.accelometer.x = static_cast<float>((((int16_t)buffer[0]) << 8)  | buffer[1]);
     imuData_.accelometer.y = static_cast<float>((((int16_t)buffer[2]) << 8)  | buffer[3]);
     imuData_.accelometer.z = static_cast<float>((((int16_t)buffer[4]) << 8)  | buffer[5]);
@@ -65,5 +68,5 @@ void MPU9150::setGyroSens(GyroSens sens)
 
 void MPU9150::setSleepEnabled(bool enabled)
 {
-    pI2cBus_->writeBit(MPU9150_I2C_ADDR, MPU9150_PWR_MGMT_1, 0x01, 6);
+    pI2cBus_->writeBit(MPU9150_I2C_ADDR, MPU9150_PWR_MGMT_1, enabled, 6);
 }
