@@ -3,6 +3,7 @@
 #define IMU_HPP
 
 #include <inttypes.h>
+#include <limits.h>
 
 struct Imu_d3_uint16
 {
@@ -24,9 +25,9 @@ typedef Imu_d3_float ImuComF;
 
 struct ImuData
 {
-    ImuAccF accelometer;
-    ImuGyrF gyro;
-    ImuComF compass;
+    float ax, ay, az;   // in m/s^2
+    float gx, gy, gz;   // in rad/s
+    float cx, cy, cz;   // in microT
 };
 
 class Imu

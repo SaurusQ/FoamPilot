@@ -51,6 +51,9 @@ class MPU9150 : public Imu
         virtual void setSleepEnabled(bool enabled);
     protected:
         I2cBus* pI2cBus_;
+        float accSensMult_;
+        float gyroSensMult_;
+        float compSensMult_;
 
 };
 
